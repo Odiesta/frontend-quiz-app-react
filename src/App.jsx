@@ -1,76 +1,91 @@
-// import Welcome from "./components/Welcome";
-
-import iconHTML from "./assets/images/icon-html.svg";
-import iconCSS from "./assets/images/icon-css.svg";
-import iconJS from "./assets/images/icon-js.svg";
-import iconAccessibility from "./assets/images/icon-accessibility.svg";
 import ViewMode from "./components/ViewMode";
 import QuizList from "./components/QuizList";
 import Question from "./components/Question";
 import QuestionTopic from "./components/QuestionTopic";
-import AnswerItem from "./components/AnswerItem";
 import AnswerList from "./components/AnswerList";
+import QuizComplete from "./components/QuizComplete";
+import Welcome from "./components/Welcome";
+import Score from "./components/Score";
+import Button from "./components/Button.jsx";
+import { useState } from "react";
 
-const quizzes = [
-  {
-    icon: iconHTML,
-    name: "HTML",
-    bgColor: "bg-orange-100",
-  },
-  {
-    icon: iconCSS,
-    name: "CSS",
-    bgColor: "bg-green-100",
-  },
-  {
-    icon: iconJS,
-    name: "JavaScript",
-    bgColor: "bg-blue-100",
-  },
-  {
-    icon: iconAccessibility,
-    name: "Accessibility",
-    bgColor: "bg-purple-100",
-  },
-];
+import quizzes from "./data/data.js";
 
-const answers = [
-  {
-    option: "A",
-    value: "4.5 : 1",
-  },
-  {
-    option: "B",
-    value: "3 : 1",
-  },
-  {
-    option: "C",
-    value: "2.5 : 1",
-  },
-  {
-    option: "D",
-    value: "5 : 1",
-  },
-];
+const newQuiz = quizzes.map((quiz) => {
+  if (quiz.title === "HTML") {
+    return { ...quiz, bgColor: "bg-orange-100" };
+  } else if (quiz.title === "CSS") {
+    return { ...quiz, bgColor: "bg-green-100" };
+  } else if (quiz.title === "JavaScript") {
+    return { ...quiz, bgColor: "bg-blue-100" };
+  } else if (quiz.title === "Accessibility") {
+    return { ...quiz, bgColor: "bg-purple-100" };
+  }
+});
 
 function App() {
+  const [title, setTitle] = useState("");
+  const [number, setNumber] = useState(0);
+  const [score, setScore] = useState(0);
+
+  function handleTitle(name) {
+    setTitle(() => {
+      return name;
+    });
+  }
+
+  function handleSetNumber() {
+    setNumber(() => number + 1);
+  }
+
+  function handlePlayAgain() {
+    setTitle("");
+    setNumber(0);
+    setScore(0);
+  }
+
   return (
     <div className="mx-auto flex h-screen max-w-4xl flex-col p-8 md:justify-center">
       <div className="flex justify-between">
-        <QuestionTopic />
+        {title && <QuestionTopic title={title} quizList={newQuiz} />}
         <ViewMode />
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-4">
-        <Question />
-        {/* <QuizList quizList={quizzes} /> */}
-        <AnswerList answerList={answers} />
+        {!title && (
+          <>
+            <Welcome />
+            <QuizList quizList={newQuiz} onTitle={handleTitle} />
+          </>
+        )}
+        {title && number < 10 && (
+          <>
+            <Question quizzes={newQuiz} number={number} title={title} />
+            <AnswerList
+              quizzes={newQuiz}
+              onSetNumber={handleSetNumber}
+              number={number}
+              title={title}
+              onSetScore={setScore}
+              score={score}
+            />
+          </>
+        )}
 
-        <div className="md:col-start-2">
-          <button className="col-span-2 mt-4 w-full justify-self-end rounded-lg bg-violet-500 px-4 py-4 text-xl font-bold text-white">
-            Submit Answer
-          </button>
-        </div>
+        {number >= 10 && (
+          <>
+            <QuizComplete />
+            <Score score={score} />
+            <Button value="Play Again" onPlayAgain={handlePlayAgain} />
+          </>
+        )}
+
+        {/* <Question /> */}
+        {/* <QuizComplete /> */}
+        {/* <AnswerList answerList={answers} /> */}
+        {/* <Score />
+        <Button value="Submit Answer" /> */}
+        {/* <Button value="Play Again" /> */}
       </div>
     </div>
   );

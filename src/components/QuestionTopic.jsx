@@ -1,14 +1,15 @@
-import iconAccessibility from "../assets/images/icon-accessibility.svg";
+/* eslint-disable react/prop-types */
+export default function QuestionTopic({ quizList, title }) {
+  const quiz = quizList.filter((q) => q.title === title)[0];
 
-export default function QuestionTopic() {
   return (
     <div className="flex items-center">
       <img
-        src={iconAccessibility}
+        src={quiz.icon}
         alt=""
-        className="h-10 w-10 rounded bg-violet-100 p-1"
+        className={`h-10 w-10 rounded ${quiz.bgColor} p-1`}
       />
-      <p className="ml-4 text-xl font-semibold">Accessibility</p>
+      <p className="ml-4 text-xl font-semibold">{quiz.title}</p>
     </div>
   );
 }

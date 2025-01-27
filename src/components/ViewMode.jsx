@@ -3,12 +3,12 @@ import iconMoonDark from "./../assets/images/icon-moon-dark.svg";
 
 export default function ViewMode() {
   return (
-    <div className="self-end flex">
+    <div className="ml-auto flex self-end">
       <img src={iconSunDark} alt="Icon Sun" className="light" />
 
-      <label className="relative inline-flex items-center cursor-pointer ml-2">
-        <input type="checkbox" value="" className="sr-only peer" />
-        <div className="group peer ring-0 bg-purple-600  rounded-full outline-none duration-300 after:duration-300 w-12 h-7 shadow-md peer-checked:bg-purple-600  peer-focus:outline-none  after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-5 after:w-5 after:top-1 after:left-1 after:-rotate-180 after:flex after:justify-center after:items-center peer-checked:after:translate-x-5  peer-hover:after:scale-95 peer-checked:after:rotate-0"></div>
+      <label className="relative ml-2 inline-flex cursor-pointer items-center">
+        <input type="checkbox" value="" className="peer sr-only" />
+        <div className="group peer h-7 w-12 rounded-full bg-purple-600 shadow-md outline-none ring-0 duration-300 after:absolute after:left-1 after:top-1 after:flex after:h-5 after:w-5 after:-rotate-180 after:items-center after:justify-center after:rounded-full after:bg-gray-50 after:outline-none after:duration-300 peer-checked:bg-purple-600 peer-checked:after:translate-x-5 peer-checked:after:rotate-0 peer-hover:after:scale-95 peer-focus:outline-none"></div>
       </label>
       <img src={iconMoonDark} alt="Icon Moon" className="dark ml-2" />
     </div>
