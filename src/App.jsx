@@ -45,7 +45,7 @@ function App() {
   }
 
   return (
-    <div className="mx-auto flex h-screen max-w-4xl flex-col p-8 md:justify-center">
+    <div className="mx-auto box-border flex h-screen max-w-4xl flex-col p-8 md:justify-center">
       <div className="flex justify-between">
         {title && <QuestionTopic title={title} quizList={newQuiz} />}
         <ViewMode />
@@ -76,7 +76,7 @@ function App() {
           <>
             <QuizComplete />
             <Score score={score} />
-            <Button value="Play Again" onPlayAgain={handlePlayAgain} />
+            <Button value="Play Again" onClick={handlePlayAgain} />
           </>
         )}
 
