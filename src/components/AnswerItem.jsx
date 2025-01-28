@@ -30,7 +30,7 @@ export default function AnswerItem({
 
   return (
     <div
-      className={`flex items-center rounded-2xl bg-white p-4 font-bold ${answerClass} group cursor-pointer border-2 ${isSelected ? selectedStyle : "border-transparent"} ${selectedSubmittedCorrectAnswer ? correctStyle : ""} ${selectedSubmittedIncorrectAnswer ? wrongStyle : ""}`}
+      className={`flex items-center rounded-2xl bg-white p-4 font-bold dark:bg-slate-600 ${answerClass} group cursor-pointer border-2 ${isSelected ? selectedStyle : "border-transparent"} ${selectedSubmittedCorrectAnswer ? correctStyle : ""} ${selectedSubmittedIncorrectAnswer ? wrongStyle : ""}`}
       onClick={handleClick}
     >
       <p
@@ -38,7 +38,9 @@ export default function AnswerItem({
       >
         {option}
       </p>
-      <p className="quiz-title mx-4 w-4/5 text-xl">{answer}</p>
+      <p className="quiz-title mx-4 w-4/5 text-xl dark:text-slate-100">
+        {answer}
+      </p>
       {answer === correctAnswer && submitted && (
         <img className="inline" src={iconCorrect} />
       )}

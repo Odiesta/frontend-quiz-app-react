@@ -9,6 +9,8 @@ import Score from "./components/Score";
 import Button from "./components/Button.jsx";
 import { useState } from "react";
 
+import "./App.css";
+
 import quizzes from "./data/data.js";
 
 const newQuiz = quizzes.map((quiz) => {
@@ -27,6 +29,7 @@ function App() {
   const [title, setTitle] = useState("");
   const [number, setNumber] = useState(0);
   const [score, setScore] = useState(0);
+  const [darkMode, setDarkMode] = useState(false);
 
   function handleTitle(name) {
     setTitle(() => {
@@ -44,48 +47,56 @@ function App() {
     setScore(0);
   }
 
+  function toggleDarkMode() {
+    setDarkMode(!darkMode);
+  }
+
   return (
-    <div className="mx-auto box-border flex h-screen max-w-4xl flex-col p-8 md:justify-center">
-      <div className="flex justify-between">
-        {title && <QuestionTopic title={title} quizList={newQuiz} />}
-        <ViewMode />
-      </div>
+    <div className={`${darkMode ? "dark" : ""}`}>
+      <div className="bg-slate-100 dark:bg-slate-700">
+        <div className="mx-auto box-border flex h-screen max-w-4xl flex-col p-8 md:justify-center">
+          <div className="flex justify-between">
+            {title && <QuestionTopic title={title} quizList={newQuiz} />}
+            <ViewMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-4">
-        {!title && (
-          <>
-            <Welcome />
-            <QuizList quizList={newQuiz} onTitle={handleTitle} />
-          </>
-        )}
-        {title && number < 10 && (
-          <>
-            <Question quizzes={newQuiz} number={number} title={title} />
-            <AnswerList
-              quizzes={newQuiz}
-              onSetNumber={handleSetNumber}
-              number={number}
-              title={title}
-              onSetScore={setScore}
-              score={score}
-            />
-          </>
-        )}
+          <div className="mt-10 grid grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-4">
+            {!title && (
+              <>
+                <Welcome />
+                <QuizList quizList={newQuiz} onTitle={handleTitle} />
+              </>
+            )}
+            {title && number < 10 && (
+              <>
+                <Question quizzes={newQuiz} number={number} title={title} />
+                <AnswerList
+                  quizzes={newQuiz}
+                  onSetNumber={handleSetNumber}
+                  number={number}
+                  title={title}
+                  onSetScore={setScore}
+                  score={score}
+                />
+              </>
+            )}
 
-        {number >= 10 && (
-          <>
-            <QuizComplete />
-            <Score score={score} />
-            <Button value="Play Again" onClick={handlePlayAgain} />
-          </>
-        )}
+            {number >= 10 && (
+              <>
+                <QuizComplete />
+                <Score score={score} />
+                <Button value="Play Again" onClick={handlePlayAgain} />
+              </>
+            )}
 
-        {/* <Question /> */}
-        {/* <QuizComplete /> */}
-        {/* <AnswerList answerList={answers} /> */}
-        {/* <Score />
+            {/* <Question /> */}
+            {/* <QuizComplete /> */}
+            {/* <AnswerList answerList={answers} /> */}
+            {/* <Score />
         <Button value="Submit Answer" /> */}
-        {/* <Button value="Play Again" /> */}
+            {/* <Button value="Play Again" /> */}
+          </div>
+        </div>
       </div>
     </div>
   );
