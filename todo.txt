@@ -1,1 +1,4 @@
-1. Fix answer in AnswerList not re render
+1. create progress bar
+2. implement correct and wrong answer
+3. implement dark mode
+4. implement error state

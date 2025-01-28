@@ -2,6 +2,7 @@
 import { useState } from "react";
 import AnswerItem from "./AnswerItem";
 import Button from "./Button";
+import iconError from "../assets/images/icon-error.svg";
 
 export default function AnswerList({
   quizzes,
@@ -13,8 +14,11 @@ export default function AnswerList({
 }) {
   const currentQuiz = quizzes.filter((quiz) => quiz.title === title)[0];
   const currentAnswers = currentQuiz.questions[number].options;
+  const correctAnswer = currentQuiz.questions[number].answer;
   const options = ["A", "B", "C", "D"];
 
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
   const [choice, setChoice] = useState("");
   const [isSelected, setIsSelected] = useState([false, false, false, false]);
   let answers = currentAnswers.map((answer, i) => {
@@ -29,11 +33,22 @@ export default function AnswerList({
   });
 
   function handleScore() {
-    if (choice === currentQuiz.questions[number].answer) {
+    if (!choice) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    if (choice === correctAnswer) {
       onSetScore(() => score + 1);
     }
+    setSubmitted(!submitted);
+  }
+
+  function handleNextQuestion() {
     onSetNumber();
     setIsSelected(isSelected.map(() => false));
+    setSubmitted(!submitted);
+    setChoice("");
   }
 
   function handleSelected(id) {
@@ -61,9 +76,19 @@ export default function AnswerList({
           onSetChoice={(val) => setChoice(val)}
           onSelected={handleSelected}
           isSelected={isSelected[i]}
+          correctAnswer={correctAnswer}
+          submitted={submitted}
         />
       ))}
-      <Button value="Submit Answer" onClick={handleScore} />
+      {!submitted && <Button value="Submit Answer" onClick={handleScore} />}
+      {submitted && (
+        <Button value="Next Question" onClick={handleNextQuestion} />
+      )}
+      {!choice && error && (
+        <p className="mt-4 text-center text-red-600">
+          <img className="inline" src={iconError} /> Please select an answer
+        </p>
+      )}
     </div>
   );
 }
