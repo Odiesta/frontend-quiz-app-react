@@ -1,4 +1,2 @@
-1. create progress bar
-2. implement correct and wrong answer
-3. implement dark mode
-4. implement error state
+1. make keyboard navigation
+2. change submit button on dark lighter
