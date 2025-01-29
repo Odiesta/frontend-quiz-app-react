@@ -52,9 +52,9 @@ function App() {
   }
 
   return (
-    <div className={`${darkMode ? "dark" : ""}`}>
+    <div className={`${darkMode ? "dark" : ""} h-full`}>
       <div className="bg-custom-light-grey font-rubik dark:bg-slate-700">
-        <div className="mx-auto box-border flex h-screen max-w-4xl flex-col p-8 md:justify-center">
+        <div className="mx-auto box-border flex max-w-4xl flex-col p-8 md:justify-center">
           <div className="mb-10 flex justify-between">
             {title && <QuestionTopic title={title} quizList={newQuiz} />}
             <ViewMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -88,13 +88,6 @@ function App() {
                 <Button value="Play Again" onClick={handlePlayAgain} />
               </>
             )}
-
-            {/* <Question /> */}
-            {/* <QuizComplete /> */}
-            {/* <AnswerList answerList={answers} /> */}
-            {/* <Score />
-        <Button value="Submit Answer" /> */}
-            {/* <Button value="Play Again" /> */}
           </div>
         </div>
       </div>
