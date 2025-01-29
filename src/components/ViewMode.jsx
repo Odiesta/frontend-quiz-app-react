@@ -19,7 +19,7 @@ export default function ViewMode({ darkMode, toggleDarkMode }) {
           className="peer sr-only"
           onClick={toggleDarkMode}
         />
-        <div className="group peer h-7 w-12 rounded-full bg-purple-600 shadow-md outline-none ring-0 duration-300 after:absolute after:left-1 after:top-1 after:flex after:h-5 after:w-5 after:-rotate-180 after:items-center after:justify-center after:rounded-full after:bg-gray-50 after:outline-none after:duration-300 peer-checked:bg-purple-600 peer-checked:after:translate-x-5 peer-checked:after:rotate-0 peer-hover:after:scale-95 peer-focus:outline-none"></div>
+        <div className="bg-custom-purple peer-checked:bg-custom-purple group peer h-7 w-12 rounded-full shadow-md outline-none ring-0 duration-300 after:absolute after:left-1 after:top-1 after:flex after:h-5 after:w-5 after:-rotate-180 after:items-center after:justify-center after:rounded-full after:bg-gray-50 after:outline-none after:duration-300 peer-checked:after:translate-x-5 peer-checked:after:rotate-0 peer-hover:after:scale-95 peer-focus:outline-none"></div>
       </label>
       <img
         src={darkMode ? iconMoonLight : iconMoonDark}

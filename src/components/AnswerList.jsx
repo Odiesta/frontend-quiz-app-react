@@ -68,27 +68,31 @@ export default function AnswerList({
   }
 
   return (
-    <div>
-      {answers.map((answer, i) => (
-        <AnswerItem
-          answerObj={answer}
-          key={answer.answer}
-          onSetChoice={(val) => setChoice(val)}
-          onSelected={handleSelected}
-          isSelected={isSelected[i]}
-          correctAnswer={correctAnswer}
-          submitted={submitted}
-        />
-      ))}
-      {!submitted && <Button value="Submit Answer" onClick={handleScore} />}
-      {submitted && (
-        <Button value="Next Question" onClick={handleNextQuestion} />
-      )}
-      {!choice && error && (
-        <p className="mt-4 text-center text-red-600">
-          <img className="inline" src={iconError} /> Please select an answer
-        </p>
-      )}
-    </div>
+    <>
+      <div>
+        {answers.map((answer, i) => (
+          <AnswerItem
+            answerObj={answer}
+            key={answer.answer}
+            onSetChoice={(val) => setChoice(val)}
+            onSelected={handleSelected}
+            isSelected={isSelected[i]}
+            correctAnswer={correctAnswer}
+            submitted={submitted}
+          />
+        ))}
+      </div>
+      <div className="md:col-start-2">
+        {!submitted && <Button value="Submit Answer" onClick={handleScore} />}
+        {submitted && (
+          <Button value="Next Question" onClick={handleNextQuestion} />
+        )}
+        {!choice && error && (
+          <p className="text-custom-incorrect mt-4 text-center">
+            <img className="inline" src={iconError} /> Please select an answer
+          </p>
+        )}
+      </div>
+    </>
   );
 }

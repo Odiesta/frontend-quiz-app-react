@@ -53,9 +53,9 @@ function App() {
 
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
-      <div className="bg-slate-100 dark:bg-slate-700">
+      <div className="bg-custom-light-grey font-rubik dark:bg-slate-700">
         <div className="mx-auto box-border flex h-screen max-w-4xl flex-col p-8 md:justify-center">
-          <div className="flex justify-between">
+          <div className="mb-10 flex justify-between">
             {title && <QuestionTopic title={title} quizList={newQuiz} />}
             <ViewMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           </div>
@@ -84,7 +84,7 @@ function App() {
             {number >= 10 && (
               <>
                 <QuizComplete />
-                <Score score={score} />
+                <Score score={score} title={title} quizList={newQuiz} />
                 <Button value="Play Again" onClick={handlePlayAgain} />
               </>
             )}

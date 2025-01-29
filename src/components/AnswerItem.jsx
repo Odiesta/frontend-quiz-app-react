@@ -17,11 +17,34 @@ export default function AnswerItem({
   const selectedSubmittedIncorrectAnswer =
     answer !== correctAnswer && submitted && isSelected;
 
-  const selectedStyle = "border-solid border-violet-500";
-  const correctStyle = "border-solid border-green-500";
-  const wrongStyle = "border-solid border-red-500";
-  const paragraphStyle =
-    "text-white bg-violet-500 group-hover:text-white group-hover:bg-violet-500";
+  const selectedStyle = "border-solid border-custom-purple";
+  const correctStyle = "border-solid border-custom-correct";
+  const wrongStyle = "border-solid border-custom-incorrect";
+
+  const selectedParagraphStyle =
+    "text-white bg-custom-purple group-hover:text-white group-hover:bg-custom-purple";
+  const correctParagraphStyle =
+    "bg-custom-correct group-hover:bg-custom-correct text-white";
+  const wrongParagraphStyle =
+    "bg-custom-incorrect group-hover:bg-custom-incorrect text-white";
+
+  let borderStyle;
+  let paragraphStyle;
+
+  if (selectedSubmittedCorrectAnswer) {
+    borderStyle = correctStyle;
+    paragraphStyle = correctParagraphStyle;
+  } else if (selectedSubmittedIncorrectAnswer) {
+    borderStyle = wrongStyle;
+    paragraphStyle = wrongParagraphStyle;
+  } else if (isSelected) {
+    borderStyle = selectedStyle;
+    paragraphStyle = selectedParagraphStyle;
+  } else {
+    borderStyle = "border-transparent";
+    paragraphStyle =
+      "bg-slate-100 group-hover:text-purple-500 group-hover:bg-purple-100";
+  }
 
   function handleClick() {
     onSetChoice(answer);
@@ -30,11 +53,11 @@ export default function AnswerItem({
 
   return (
     <div
-      className={`flex items-center rounded-2xl bg-white p-4 font-bold dark:bg-slate-600 ${answerClass} group cursor-pointer border-2 ${isSelected ? selectedStyle : "border-transparent"} ${selectedSubmittedCorrectAnswer ? correctStyle : ""} ${selectedSubmittedIncorrectAnswer ? wrongStyle : ""}`}
+      className={`flex items-center rounded-2xl bg-white p-4 font-bold shadow-sm dark:bg-slate-600 ${answerClass} group h-24 cursor-pointer border-2 ${borderStyle} font-medium`}
       onClick={handleClick}
     >
       <p
-        className={`group-active: rounded bg-slate-100 px-3 py-1 text-xl text-slate-500 group-hover:bg-purple-100 group-hover:text-purple-500 ${isSelected ? paragraphStyle : ""} ${selectedSubmittedCorrectAnswer ? "bg-green-500 group-hover:bg-green-500" : ""} ${selectedSubmittedIncorrectAnswer ? "bg-red-500 group-hover:bg-red-500" : ""}`}
+        className={`rounded px-3 py-1 text-xl text-slate-500 ${paragraphStyle}`}
       >
         {option}
       </p>
