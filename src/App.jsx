@@ -9,6 +9,13 @@ import Score from "./components/Score";
 import Button from "./components/Button.jsx";
 import { useState } from "react";
 
+import patternDesktopLight from "./assets/images/pattern-background-desktop-light.svg";
+import patternDesktopDark from "./assets/images/pattern-background-desktop-dark.svg";
+import patternTabletLight from "./assets/images/pattern-background-tablet-light.svg";
+import patternTabletDark from "./assets/images/pattern-background-tablet-dark.svg";
+import patternMobileLight from "./assets/images/pattern-background-mobile-light.svg";
+import patternMobileDark from "./assets/images/pattern-background-mobile-dark.svg";
+
 import "./App.css";
 
 import quizzes from "./data/data.js";
@@ -30,6 +37,21 @@ function App() {
   const [number, setNumber] = useState(0);
   const [score, setScore] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
+
+  // const patternDesktopLight =
+  //   "./assets/images/pattern-background-desktop-light.svg";
+  // const patternDesktopDark =
+  //   "./assets/images/pattern-background-desktop-dark.svg";
+  // const patternTabletLight =
+  //   "./assets/images/pattern-background-tablet-light.svg";
+  // const patternTabletDark =
+  //   "./assets/images/pattern-background-tablet-dark.svg";
+  // const patternMobileLight =
+  //   "./assets/images/pattern-background-mobile-light.svg";
+  // const patternMobileDark =
+  //   "./assets/images/pattern-background-mobile-dark.svg";
+
+  const bgStyle = `--bg-image-md: url(${patternTabletLight}), --bg-image-lg: url(${patternDesktopLight})`;
 
   function handleTitle(name) {
     setTitle(() => {
@@ -53,14 +75,16 @@ function App() {
 
   return (
     <div className={`${darkMode ? "dark" : ""} `}>
-      <div className="bg-custom-light-grey font-rubik dark:bg-slate-700">
+      <div
+        className={`bg-custom-light-grey font-rubik md:bg-patternDesktopLight sm:bg-patternTabletLight bg-patternMobileLight dark:md:bg-patternDesktopDark dark:sm:bg-patternTabletDark dark:bg-patternMobileDark dark:bg-slate-700`}
+      >
         <div className="mx-auto box-border flex min-h-screen max-w-4xl flex-col p-8 md:justify-center">
           <div className="mb-10 flex justify-between">
             {title && <QuestionTopic title={title} quizList={newQuiz} />}
             <ViewMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-4">
+          <div className="mt-2 grid grid-cols-1 gap-y-2 sm:mt-5 md:mt-10 md:grid-cols-2 md:gap-x-4">
             {!title && (
               <>
                 <Welcome />

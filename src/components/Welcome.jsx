@@ -8,7 +8,7 @@ export default function Welcome() {
         </b>
       </h1>
 
-      <p className="dark:text-custom-light-blue mt-4 font-light italic md:mt-8">
+      <p className="dark:text-custom-light-blue mb-2 mt-4 font-light italic md:mb-0 md:mt-8">
         Pick a subject to get started.
       </p>
     </div>

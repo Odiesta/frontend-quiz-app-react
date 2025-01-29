@@ -7,10 +7,10 @@ export default function Question({ quizzes, number, title }) {
   return (
     <div className="dark:text-slate-100 md:flex md:flex-col md:justify-between">
       <div>
-        <p className="text-custom-grey dark:text-custom-light-blue italic">
+        <p className="text-custom-grey dark:text-custom-light-blue text-md italic">
           Question {number + 1} of 10
         </p>
-        <p className="mt-4 text-2xl font-medium text-black dark:text-slate-100">
+        <p className="mt-2 text-xl font-medium text-black dark:text-slate-100 md:mt-4 md:text-2xl">
           {currentQuestion}
         </p>
       </div>

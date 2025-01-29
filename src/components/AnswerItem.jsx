@@ -53,15 +53,15 @@ export default function AnswerItem({
 
   return (
     <div
-      className={`flex items-center rounded-2xl bg-white p-4 font-bold shadow-sm dark:bg-slate-600 ${answerClass} group h-24 cursor-pointer border-2 ${borderStyle} font-medium`}
+      className={`flex items-center rounded-2xl bg-white p-4 font-bold shadow-sm dark:bg-slate-600 ${answerClass} group cursor-pointer border-2 md:h-24 ${borderStyle} font-medium`}
       onClick={handleClick}
     >
       <p
-        className={`rounded px-3 py-1 text-xl text-slate-500 ${paragraphStyle}`}
+        className={`text-md rounded px-3 py-1 text-slate-500 md:text-xl ${paragraphStyle}`}
       >
         {option}
       </p>
-      <p className="quiz-title mx-4 w-4/5 text-xl dark:text-slate-100">
+      <p className="quiz-title text-md mx-4 w-4/5 dark:text-slate-100 md:text-xl">
         {answer}
       </p>
       {answer === correctAnswer && submitted && (
