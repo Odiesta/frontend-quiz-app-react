@@ -18,17 +18,17 @@ export default {
       },
       backgroundImage: {
         patternDesktopLight:
-          "url('./src/assets/images/pattern-background-desktop-light.svg')",
+          "url('./assets/images/pattern-background-desktop-light.svg')",
         patternDesktopDark:
-          "url('./src/assets/images/pattern-background-desktop-dark.svg')",
+          "url('./assets/images/pattern-background-desktop-dark.svg')",
         patternTabletLight:
-          "url('./src/assets/images/pattern-background-tablet-light.svg')",
+          "url('./assets/images/pattern-background-tablet-light.svg')",
         patternTabletDark:
-          "url('./src/assets/images/pattern-background-tablet-dark.svg')",
+          "url('./assets/images/pattern-background-tablet-dark.svg')",
         patternMobileLight:
-          "url('./src/assets/images/pattern-background-mobile-light.svg')",
+          "url('./assets/images/pattern-background-mobile-light.svg')",
         patternMobileDark:
-          "url('./src/assets/images/pattern-background-mobile-dark.svg')",
+          "url('./assets/images/pattern-background-mobile-dark.svg')",
       },
     },
   },

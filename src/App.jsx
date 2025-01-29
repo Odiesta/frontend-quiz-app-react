@@ -9,15 +9,6 @@ import Score from "./components/Score";
 import Button from "./components/Button.jsx";
 import { useState } from "react";
 
-import patternDesktopLight from "./assets/images/pattern-background-desktop-light.svg";
-import patternDesktopDark from "./assets/images/pattern-background-desktop-dark.svg";
-import patternTabletLight from "./assets/images/pattern-background-tablet-light.svg";
-import patternTabletDark from "./assets/images/pattern-background-tablet-dark.svg";
-import patternMobileLight from "./assets/images/pattern-background-mobile-light.svg";
-import patternMobileDark from "./assets/images/pattern-background-mobile-dark.svg";
-
-import "./App.css";
-
 import quizzes from "./data/data.js";
 
 const newQuiz = quizzes.map((quiz) => {
@@ -37,21 +28,6 @@ function App() {
   const [number, setNumber] = useState(0);
   const [score, setScore] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
-
-  // const patternDesktopLight =
-  //   "./assets/images/pattern-background-desktop-light.svg";
-  // const patternDesktopDark =
-  //   "./assets/images/pattern-background-desktop-dark.svg";
-  // const patternTabletLight =
-  //   "./assets/images/pattern-background-tablet-light.svg";
-  // const patternTabletDark =
-  //   "./assets/images/pattern-background-tablet-dark.svg";
-  // const patternMobileLight =
-  //   "./assets/images/pattern-background-mobile-light.svg";
-  // const patternMobileDark =
-  //   "./assets/images/pattern-background-mobile-dark.svg";
-
-  const bgStyle = `--bg-image-md: url(${patternTabletLight}), --bg-image-lg: url(${patternDesktopLight})`;
 
   function handleTitle(name) {
     setTitle(() => {
